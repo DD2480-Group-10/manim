@@ -53,7 +53,7 @@ from colour import Color
 from manim.constants import *
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.mobject.types.vectorized_mobject import VMobject
-from manim.utils.color import *
+from manim.utils.color import Colors
 from manim.utils.iterables import adjacent_pairs
 from manim.utils.space_ops import (
     angle_of_vector,
@@ -480,7 +480,7 @@ class Circle(Arc):
     def __init__(
         self,
         radius: float | None = None,
-        color: Color | str = RED,
+        color: Color | str = Colors.RED,
         **kwargs,
     ):
         super().__init__(
@@ -644,7 +644,7 @@ class Dot(Circle):
         radius: float = DEFAULT_DOT_RADIUS,
         stroke_width: float = 0,
         fill_opacity: float = 1.0,
-        color: Color | str = WHITE,
+        color: Color | str = Colors.WHITE,
         **kwargs,
     ):
         super().__init__(
@@ -664,8 +664,8 @@ class AnnotationDot(Dot):
         self,
         radius: float = DEFAULT_DOT_RADIUS * 1.3,
         stroke_width=5,
-        stroke_color=WHITE,
-        fill_color=BLUE,
+        stroke_color=Colors.WHITE,
+        fill_color=Colors.BLUE,
         **kwargs,
     ):
         super().__init__(
@@ -720,7 +720,7 @@ class LabeledDot(Dot):
         if isinstance(label, str):
             from manim import MathTex
 
-            rendered_label = MathTex(label, color=BLACK)
+            rendered_label = MathTex(label, color=Colors.BLACK)
         else:
             rendered_label = label
 
@@ -814,7 +814,7 @@ class AnnularSector(Arc):
         start_angle=0,
         fill_opacity=1,
         stroke_width=0,
-        color=WHITE,
+        color=Colors.WHITE,
         **kwargs,
     ):
         self.inner_radius = inner_radius
@@ -897,7 +897,7 @@ class Annulus(Circle):
         outer_radius: float | None = 2,
         fill_opacity=1,
         stroke_width=0,
-        color=WHITE,
+        color=Colors.WHITE,
         mark_paths_closed=False,
         **kwargs,
     ):

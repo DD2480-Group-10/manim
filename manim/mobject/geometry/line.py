@@ -27,7 +27,7 @@ from manim.mobject.mobject import Mobject
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 from manim.mobject.types.vectorized_mobject import DashedVMobject, VGroup, VMobject
-from manim.utils.color import *
+from manim.utils.color import Colors
 from manim.utils.space_ops import angle_of_vector, line_intersection, normalize
 
 
@@ -871,7 +871,7 @@ class Angle(VMobject, metaclass=ConvertToOpenGL):
         dot=False,
         dot_radius=None,
         dot_distance=0.55,
-        dot_color=WHITE,
+        dot_color=Colors.WHITE,
         elbow=False,
         **kwargs,
     ):

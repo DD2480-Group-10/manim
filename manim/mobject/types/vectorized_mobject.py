@@ -37,7 +37,7 @@ from ...utils.bezier import (
     partial_bezier_points,
     proportions_along_bezier_curve_for_point,
 )
-from ...utils.color import BLACK, WHITE, color_to_rgba
+from ...utils.color import Colors
 from ...utils.deprecation import deprecated
 from ...utils.iterables import make_even, stretch_array_to_length, tuplify
 from ...utils.space_ops import rotate_vector, shoelace_direction
@@ -81,7 +81,7 @@ class VMobject(Mobject):
         stroke_color=None,
         stroke_opacity=1.0,
         stroke_width=DEFAULT_STROKE_WIDTH,
-        background_stroke_color=BLACK,
+        background_stroke_color=Colors.BLACK,
         background_stroke_opacity=1.0,
         background_stroke_width=0,
         sheen_factor=0.0,
@@ -165,7 +165,7 @@ class VMobject(Mobject):
         colors = list(tuplify(color))
         opacities = list(tuplify(opacity))
         rgbas = np.array(
-            [color_to_rgba(c, o) for c, o in zip(*make_even(colors, opacities))],
+            [Colors.color_to_rgba(c, o) for c, o in zip(*make_even(colors, opacities))],
         )
 
         sheen_factor = self.get_sheen_factor()
@@ -177,7 +177,7 @@ class VMobject(Mobject):
         return rgbas
 
     def update_rgbas_array(self, array_name, color=None, opacity=None):
-        passed_color = color if (color is not None) else BLACK
+        passed_color = color if (color is not None) else Colors.BLACK
         passed_opacity = opacity if (opacity is not None) else 0
         rgbas = self.generate_rgbas_array(passed_color, passed_opacity)
         if not hasattr(self, array_name):
@@ -569,7 +569,7 @@ class VMobject(Mobject):
 
     def color_using_background_image(self, background_image: Union[Image, str]):
         self.background_image = background_image
-        self.set_color(WHITE)
+        self.set_color(Colors.WHITE)
         for submob in self.submobjects:
             submob.color_using_background_image(background_image)
         return self
@@ -2217,7 +2217,7 @@ class VectorizedPoint(VMobject, metaclass=ConvertToOpenGL):
     def __init__(
         self,
         location=ORIGIN,
-        color=BLACK,
+        color=Colors.BLACK,
         fill_opacity=0,
         stroke_width=0,
         artificial_width=0.01,
@@ -2338,7 +2338,7 @@ class DashedVMobject(VMobject, metaclass=ConvertToOpenGL):
         num_dashes=15,
         dashed_ratio=0.5,
         dash_offset=0,
-        color=WHITE,
+        color=Colors.WHITE,
         equal_lengths=True,
         **kwargs,
     ):

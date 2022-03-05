@@ -10,7 +10,7 @@ from manim.mobject.geometry.line import Line
 from manim.mobject.geometry.polygram import RoundedRectangle
 from manim.mobject.mobject import Mobject
 from manim.mobject.types.vectorized_mobject import VGroup
-from manim.utils.color import BLACK, RED, YELLOW, Color, Colors
+from manim.utils.color import Colors
 
 
 class SurroundingRectangle(RoundedRectangle):
@@ -38,7 +38,7 @@ class SurroundingRectangle(RoundedRectangle):
     """
 
     def __init__(
-        self, mobject, color=YELLOW, buff=SMALL_BUFF, corner_radius=0.0, **kwargs
+        self, mobject, color=Colors.YELLOW, buff=SMALL_BUFF, corner_radius=0.0, **kwargs
     ):
         super().__init__(
             color=color,
@@ -114,15 +114,15 @@ class BackgroundRectangle(SurroundingRectangle):
     ):
         # Unchangeable style, except for fill_opacity
         super().set_style(
-            stroke_color=BLACK,
+            stroke_color=Colors.BLACK,
             stroke_width=0,
-            fill_color=BLACK,
+            fill_color=Colors.BLACK,
             fill_opacity=fill_opacity,
         )
         return self
 
     def get_fill_color(self):
-        return Color(self.color)
+        return Colors.Color(self.color)
 
 
 class Cross(VGroup):
@@ -153,7 +153,7 @@ class Cross(VGroup):
     def __init__(
         self,
         mobject: Mobject | None = None,
-        stroke_color: Color = RED,
+        stroke_color: Colors.Color = Colors.RED,
         stroke_width: float = 6,
         scale_factor: float = 1,
         **kwargs,

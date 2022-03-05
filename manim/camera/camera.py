@@ -24,7 +24,7 @@ from ..mobject.mobject import Mobject
 from ..mobject.types.image_mobject import AbstractImageMobject
 from ..mobject.types.point_cloud_mobject import PMobject
 from ..mobject.types.vectorized_mobject import VMobject
-from ..utils.color import color_to_int_rgba
+from ..utils.color import Colors
 from ..utils.family import extract_mobject_family_members
 from ..utils.images import get_full_raster_image_path
 from ..utils.iterables import list_difference_update
@@ -248,7 +248,7 @@ class Camera:
             self.background = np.array(image)[:height, :width]
             self.background = self.background.astype(self.pixel_array_dtype)
         else:
-            background_rgba = color_to_int_rgba(
+            background_rgba = Colors.color_to_int_rgba(
                 self.background_color,
                 self.background_opacity,
             )

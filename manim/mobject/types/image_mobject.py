@@ -16,7 +16,7 @@ from ... import config
 from ...constants import *
 from ...mobject.mobject import Mobject
 from ...utils.bezier import interpolate
-from ...utils.color import WHITE, color_to_int_rgb
+from ...utils.color import Colors
 from ...utils.images import get_full_raster_image_path
 
 
@@ -208,7 +208,7 @@ class ImageMobject(AbstractImageMobject):
         return self.pixel_array
 
     def set_color(self, color, alpha=None, family=True):
-        rgb = color_to_int_rgb(color)
+        rgb = Colors.color_to_int_rgb(color)
         self.pixel_array[:, :, :3] = rgb
         if alpha is not None:
             self.pixel_array[:, :, 3] = int(255 * alpha)
@@ -300,7 +300,7 @@ class ImageMobjectFromCamera(AbstractImageMobject):
         if default_display_frame_config is None:
             default_display_frame_config = {
                 "stroke_width": 3,
-                "stroke_color": WHITE,
+                "stroke_color": Colors.WHITE,
                 "buff": 0,
             }
         self.default_display_frame_config = default_display_frame_config

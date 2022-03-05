@@ -13,14 +13,7 @@ from manim.mobject.opengl.opengl_point_cloud_mobject import OpenGLPMobject
 from ...constants import *
 from ...mobject.mobject import Mobject
 from ...utils.bezier import interpolate
-from ...utils.color import (
-    BLACK,
-    WHITE,
-    YELLOW,
-    color_gradient,
-    color_to_rgba,
-    rgba_to_color,
-)
+from ...utils.color import Colors
 from ...utils.iterables import stretch_array_to_length
 
 
@@ -77,14 +70,14 @@ class PMobject(Mobject, metaclass=ConvertToOpenGL):
         self.points = np.append(self.points, points, axis=0)
         if rgbas is None:
             color = Color(color) if color else self.color
-            rgbas = np.repeat([color_to_rgba(color, alpha)], num_new_points, axis=0)
+            rgbas = np.repeat([Colors.color_to_rgba(color, alpha)], num_new_points, axis=0)
         elif len(rgbas) != len(points):
             raise ValueError("points and rgbas must have same length")
         self.rgbas = np.append(self.rgbas, rgbas, axis=0)
         return self
 
-    def set_color(self, color=YELLOW, family=True):
-        rgba = color_to_rgba(color)
+    def set_color(self, color=Colors.YELLOW, family=True):
+        rgba = Colors.color_to_rgba(color)
         mobs = self.family_members_with_points() if family else [self]
         for mob in mobs:
             mob.rgbas[:, :] = rgba
@@ -102,7 +95,7 @@ class PMobject(Mobject, metaclass=ConvertToOpenGL):
 
     def set_color_by_gradient(self, *colors):
         self.rgbas = np.array(
-            list(map(color_to_rgba, color_gradient(*colors, len(self.points)))),
+            list(map(Colors.color_to_rgba, Colors.color_gradient(*colors, len(self.points)))),
         )
         return self
 
@@ -110,10 +103,10 @@ class PMobject(Mobject, metaclass=ConvertToOpenGL):
         self,
         center=None,
         radius=1,
-        inner_color=WHITE,
-        outer_color=BLACK,
+        inner_color=Colors.WHITE,
+        outer_color=Colors.BLACK,
     ):
-        start_rgba, end_rgba = list(map(color_to_rgba, [inner_color, outer_color]))
+        start_rgba, end_rgba = list(map(Colors.color_to_rgba, [inner_color, outer_color]))
         if center is None:
             center = self.get_center()
         for mob in self.family_members_with_points():
@@ -160,7 +153,7 @@ class PMobject(Mobject, metaclass=ConvertToOpenGL):
         return self
 
     def fade_to(self, color, alpha, family=True):
-        self.rgbas = interpolate(self.rgbas, color_to_rgba(color), alpha)
+        self.rgbas = interpolate(self.rgbas, Colors.color_to_rgba(color), alpha)
         for mob in self.submobjects:
             mob.fade_to(color, alpha, family)
         return self
@@ -177,7 +170,7 @@ class PMobject(Mobject, metaclass=ConvertToOpenGL):
         return self
 
     def get_color(self):
-        return rgba_to_color(self.rgbas[0, :])
+        return Colors.rgba_to_color(self.rgbas[0, :])
 
     def point_from_proportion(self, alpha):
         index = alpha * (self.get_num_points() - 1)
@@ -313,7 +306,7 @@ class PointCloudDot(Mobject1D):
         radius=2.0,
         stroke_width=2,
         density=DEFAULT_POINT_DENSITY_1D,
-        color=YELLOW,
+        color=Colors.YELLOW,
         **kwargs,
     ):
         self.radius = radius
@@ -363,7 +356,7 @@ class Point(PMobject):
                 self.add(point)
     """
 
-    def __init__(self, location=ORIGIN, color=BLACK, **kwargs):
+    def __init__(self, location=ORIGIN, color=Colors.BLACK, **kwargs):
         self.location = location
         super().__init__(color=color, **kwargs)
 

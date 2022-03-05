@@ -58,7 +58,7 @@ from ..constants import *
 from ..mobject.mobject import Mobject
 from ..mobject.types.vectorized_mobject import VGroup, VMobject
 from ..utils.bezier import interpolate, inverse_interpolate
-from ..utils.color import GREY, YELLOW
+from ..utils.color import Colors
 from ..utils.deprecation import deprecated
 from ..utils.rate_functions import smooth, there_and_back, wiggle
 from ..utils.space_ops import normalize
@@ -96,7 +96,7 @@ class FocusOn(Transform):
         self,
         focus_point: Union[np.ndarray, Mobject],
         opacity: float = 0.2,
-        color: str = GREY,
+        color: str = Colors.GREY,
         run_time: float = 2,
         **kwargs
     ) -> None:
@@ -150,7 +150,7 @@ class Indicate(Transform):
         self,
         mobject: "Mobject",
         scale_factor: float = 1.2,
-        color: str = YELLOW,
+        color: str = Colors.YELLOW,
         rate_func: Callable[[float, Optional[float]], np.ndarray] = there_and_back,
         **kwargs
     ) -> None:
@@ -223,7 +223,7 @@ class Flash(AnimationGroup):
         num_lines: int = 12,
         flash_radius: float = 0.1,
         line_stroke_width: int = 3,
-        color: str = YELLOW,
+        color: str = Colors.YELLOW,
         time_width: float = 1,
         run_time: float = 1.0,
         **kwargs
@@ -607,7 +607,7 @@ class Circumscribe(Succession):
         fade_out=False,
         time_width=0.3,
         buff: float = SMALL_BUFF,
-        color: Color = YELLOW,
+        color: Color = Colors.YELLOW,
         run_time=1,
         stroke_width=DEFAULT_STROKE_WIDTH,
         **kwargs

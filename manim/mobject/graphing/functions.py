@@ -14,7 +14,7 @@ from manim import config
 from manim.mobject.graphing.scale import LinearBase, _ScaleBase
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.mobject.types.vectorized_mobject import VMobject
-from manim.utils.color import YELLOW
+from manim.utils.color import Colors
 
 
 class ParametricFunction(VMobject, metaclass=ConvertToOpenGL):
@@ -187,7 +187,7 @@ class FunctionGraph(ParametricFunction):
                 self.add(cos_func, sin_func_1, sin_func_2)
     """
 
-    def __init__(self, function, x_range=None, color=YELLOW, **kwargs):
+    def __init__(self, function, x_range=None, color=Colors.YELLOW, **kwargs):
 
         if x_range is None:
             x_range = np.array([-config["frame_x_radius"], config["frame_x_radius"]])

@@ -8,7 +8,7 @@ import numpy as np
 from manim.constants import *
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 from manim.utils.bezier import interpolate
-from manim.utils.color import BLACK, WHITE, YELLOW, color_gradient, color_to_rgba
+from manim.utils.color import Colors
 from manim.utils.config_ops import _Uniforms
 from manim.utils.iterables import resize_with_interpolation
 
@@ -25,7 +25,7 @@ class OpenGLPMobject(OpenGLMobject):
     point_radius = _Uniforms()
 
     def __init__(
-        self, stroke_width=2.0, color=YELLOW, render_primitive=moderngl.POINTS, **kwargs
+        self, stroke_width=2.0, color=Colors.YELLOW, render_primitive=moderngl.POINTS, **kwargs
     ):
         self.stroke_width = stroke_width
         super().__init__(color=color, render_primitive=render_primitive, **kwargs)
@@ -48,13 +48,13 @@ class OpenGLPMobject(OpenGLMobject):
         Rgbas must be a Nx4 numpy array if it is not None.
         """
         if rgbas is None and color is None:
-            color = YELLOW
+            color = Colors.YELLOW
         self.append_points(points)
         # rgbas array will have been resized with points
         if color is not None:
             if opacity is None:
                 opacity = self.rgbas[-1, 3]
-            new_rgbas = np.repeat([color_to_rgba(color, opacity)], len(points), axis=0)
+            new_rgbas = np.repeat([Colors.color_to_rgba(color, opacity)], len(points), axis=0)
         elif rgbas is not None:
             new_rgbas = rgbas
         elif len(rgbas) != len(points):
@@ -80,7 +80,7 @@ class OpenGLPMobject(OpenGLMobject):
 
     def set_color_by_gradient(self, *colors):
         self.rgbas = np.array(
-            list(map(color_to_rgba, color_gradient(*colors, self.get_num_points()))),
+            list(map(Colors.color_to_rgba, Colors.color_gradient(*colors, self.get_num_points()))),
         )
         return self
 
@@ -88,10 +88,10 @@ class OpenGLPMobject(OpenGLMobject):
         self,
         center=None,
         radius=1,
-        inner_color=WHITE,
-        outer_color=BLACK,
+        inner_color=Colors.WHITE,
+        outer_color=Colors.BLACK,
     ):
-        start_rgba, end_rgba = list(map(color_to_rgba, [inner_color, outer_color]))
+        start_rgba, end_rgba = list(map(Colors.color_to_rgba, [inner_color, outer_color]))
         if center is None:
             center = self.get_center()
         for mob in self.family_members_with_points():
@@ -110,7 +110,7 @@ class OpenGLPMobject(OpenGLMobject):
         return self
 
     def fade_to(self, color, alpha, family=True):
-        rgbas = interpolate(self.rgbas, color_to_rgba(color), alpha)
+        rgbas = interpolate(self.rgbas, Colors.color_to_rgba(color), alpha)
         for mob in self.submobjects:
             mob.fade_to(color, alpha, family)
         self.set_rgba_array_direct(rgbas)

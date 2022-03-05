@@ -11,7 +11,7 @@ from colour import Color
 from manim._config import config
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.mobject.types.vectorized_mobject import VGroup, VMobject
-from manim.utils.color import BLUE_B, BLUE_D, BLUE_E, GREY_BROWN, WHITE
+from manim.utils.color import Colors
 from manim.utils.rate_functions import smooth
 
 
@@ -35,7 +35,7 @@ class AnimatedBoundary(VGroup):
     def __init__(
         self,
         vmobject,
-        colors=[BLUE_D, BLUE_B, BLUE_E, GREY_BROWN],
+        colors=[Colors.BLUE_D, Colors.BLUE_B, Colors.BLUE_E, Colors.GREY_BROWN],
         max_stroke_width=3,
         cycle_rate=0.5,
         back_and_forth=True,
@@ -140,7 +140,7 @@ class TracedPath(VMobject, metaclass=ConvertToOpenGL):
         self,
         traced_point_func: Callable,
         stroke_width: float = 2,
-        stroke_color: Color = WHITE,
+        stroke_color: Color = Colors.WHITE,
         dissipating_time: float | None = None,
         **kwargs,
     ):

@@ -15,7 +15,7 @@ from ..camera.camera import Camera
 from ..constants import DOWN, LEFT, ORIGIN, RIGHT, UP
 from ..mobject.frame import ScreenRectangle
 from ..mobject.types.vectorized_mobject import VGroup
-from ..utils.color import WHITE
+from ..utils.color import Colors
 
 
 # TODO, think about how to incorporate perspective
@@ -40,7 +40,7 @@ class MovingCamera(Camera):
         self,
         frame=None,
         fixed_dimension=0,  # width
-        default_frame_stroke_color=WHITE,
+        default_frame_stroke_color=Colors.WHITE,
         default_frame_stroke_width=0,
         **kwargs,
     ):

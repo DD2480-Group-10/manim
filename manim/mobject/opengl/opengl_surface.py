@@ -6,7 +6,7 @@ import numpy as np
 from manim.constants import *
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 from manim.utils.bezier import integer_interpolate, interpolate
-from manim.utils.color import *
+from manim.utils.color import Colors
 from manim.utils.config_ops import _Data, _Uniforms
 from manim.utils.images import get_full_raster_image_path
 from manim.utils.iterables import listify
@@ -31,7 +31,7 @@ class OpenGLSurface(OpenGLMobject):
         # each coordinate is one more than the the number of
         # rows/columns of approximating squares
         resolution=None,
-        color=GREY,
+        color=Colors.GREY,
         opacity=1.0,
         gloss=0.3,
         shadow=0.4,
@@ -288,7 +288,7 @@ class OpenGLSurface(OpenGLMobject):
                             pivots[i] - pivots[i - 1]
                         )
                         color_index = min(color_index, 1)
-                        mob_color = interpolate_color(
+                        mob_color = Colors.interpolate_color(
                             new_colors[i - 1],
                             new_colors[i],
                             color_index,

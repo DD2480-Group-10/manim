@@ -15,7 +15,7 @@ from colour import Color
 from manim import config
 from manim.constants import *
 from manim.utils.bezier import integer_interpolate, interpolate
-from manim.utils.color import *
+#from manim.utils.color import *
 from manim.utils.color import Colors
 from manim.utils.config_ops import _Data, _Uniforms
 
@@ -73,7 +73,7 @@ class OpenGLMobject:
 
     def __init__(
         self,
-        color=WHITE,
+        color=Colors.WHITE,
         opacity=1,
         dim=3,  # TODO, get rid of this
         # Lighting parameters
@@ -1872,7 +1872,7 @@ class OpenGLMobject:
 
     def set_rgba_array(self, color=None, opacity=None, name="rgbas", recurse=True):
         if color is not None:
-            rgbs = np.array([color_to_rgb(c) for c in listify(color)])
+            rgbs = np.array([Colors.color_to_rgb(c) for c in listify(color)])
         if opacity is not None:
             opacities = listify(opacity)
 
@@ -1938,7 +1938,7 @@ class OpenGLMobject:
         return self
 
     def get_color(self):
-        return rgb_to_hex(self.rgbas[0, :3])
+        return Colors.rgb_to_hex(self.rgbas[0, :3])
 
     def get_opacity(self):
         return self.rgbas[0, 3]
@@ -1955,7 +1955,7 @@ class OpenGLMobject:
 
         # mobs = self.family_members_with_points()
         mobs = self.submobjects
-        new_colors = color_gradient(colors, len(mobs))
+        new_colors = Colors.color_gradient(colors, len(mobs))
 
         for mob, color in zip(mobs, new_colors):
             mob.set_color(color)
@@ -2563,13 +2563,13 @@ class OpenGLMobject:
         # of the shader code
         for char in "xyz":
             glsl_snippet = glsl_snippet.replace(char, "point." + char)
-        rgb_list = get_colormap_list(colormap)
+        rgb_list = Colors.get_colormap_list(colormap)
         self.set_color_by_code(
             "color.rgb = float_to_color({}, {}, {}, {});".format(
                 glsl_snippet,
                 float(min_value),
                 float(max_value),
-                get_colormap_code(rgb_list),
+                Colors.get_colormap_code(rgb_list),
             ),
         )
         return self

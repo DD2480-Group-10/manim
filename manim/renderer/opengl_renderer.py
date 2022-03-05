@@ -18,7 +18,7 @@ from manim import config, logger
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject, OpenGLPoint
 from manim.mobject.opengl.opengl_vectorized_mobject import OpenGLVMobject
 from manim.utils.caching import handle_caching_play
-from manim.utils.color import color_to_rgba
+from manim.utils.color import Colors
 from manim.utils.exceptions import EndSceneEarlyException
 
 from ..constants import *
@@ -246,7 +246,7 @@ class OpenGLRenderer:
         # Initialize texture map.
         self.path_to_texture_id = {}
 
-        self._background_color = color_to_rgba(config["background_color"], 1.0)
+        self._background_color = Colors.color_to_rgba(config["background_color"], 1.0)
 
     def init_scene(self, scene):
         self.partial_movie_files = []
@@ -592,4 +592,4 @@ class OpenGLRenderer:
 
     @background_color.setter
     def background_color(self, value):
-        self._background_color = color_to_rgba(value, 1.0)
+        self._background_color = Colors.color_to_rgba(value, 1.0)

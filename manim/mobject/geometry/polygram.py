@@ -24,7 +24,7 @@ from manim.constants import *
 from manim.mobject.geometry.arc import ArcBetweenPoints
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.mobject.types.vectorized_mobject import VGroup, VMobject
-from manim.utils.color import *
+from manim.utils.color import Colors
 from manim.utils.iterables import adjacent_n_tuples, adjacent_pairs
 from manim.utils.space_ops import angle_between_vectors, normalize, regular_vertices
 
@@ -64,7 +64,7 @@ class Polygram(VMobject, metaclass=ConvertToOpenGL):
                 self.wait()
     """
 
-    def __init__(self, *vertex_groups: Iterable[Sequence[float]], color=BLUE, **kwargs):
+    def __init__(self, *vertex_groups: Iterable[Sequence[float]], color=Colors.BLUE, **kwargs):
         super().__init__(color=color, **kwargs)
 
         for vertices in vertex_groups:
@@ -536,7 +536,7 @@ class Rectangle(Polygon):
 
     def __init__(
         self,
-        color: Color = WHITE,
+        color: Color = Colors.WHITE,
         height: float = 2.0,
         width: float = 4.0,
         grid_xstep: float | None = None,

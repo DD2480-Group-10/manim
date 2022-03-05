@@ -20,7 +20,7 @@ from ...animation.growing import GrowFromCenter
 from ...constants import *
 from ...mobject.svg.svg_path import SVGPathMobject
 from ...mobject.types.vectorized_mobject import VMobject
-from ...utils.color import BLACK
+from ...utils.color import Colors
 
 
 class Brace(SVGPathMobject):
@@ -67,7 +67,7 @@ class Brace(SVGPathMobject):
         stroke_width=0,
         fill_opacity=1.0,
         background_stroke_width=0,
-        background_stroke_color=BLACK,
+        background_stroke_color=Colors.BLACK,
         **kwargs,
     ):
         path_string_template = (

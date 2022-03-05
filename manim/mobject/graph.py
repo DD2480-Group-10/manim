@@ -21,7 +21,7 @@ from manim.mobject.text.tex_mobject import MathTex
 
 from ..animation.composition import AnimationGroup
 from ..animation.creation import Create, Uncreate
-from ..utils.color import BLACK
+from ..utils.color import Colors
 from .mobject import Mobject, override_animate
 from .types.vectorized_mobject import VMobject
 
@@ -457,7 +457,7 @@ class Graph(VMobject, metaclass=ConvertToOpenGL):
         vertices: list[Hashable],
         edges: list[tuple[Hashable, Hashable]],
         labels: bool | dict = False,
-        label_fill_color: str = BLACK,
+        label_fill_color: str = Colors.BLACK,
         layout: str | dict = "spring",
         layout_scale: float | tuple = 2,
         layout_config: dict | None = None,
@@ -571,7 +571,7 @@ class Graph(VMobject, metaclass=ConvertToOpenGL):
         vertex: Hashable,
         position: np.ndarray | None = None,
         label: bool = False,
-        label_fill_color: str = BLACK,
+        label_fill_color: str = Colors.BLACK,
         vertex_type: type[Mobject] = Dot,
         vertex_config: dict | None = None,
         vertex_mobject: dict | None = None,
@@ -643,7 +643,7 @@ class Graph(VMobject, metaclass=ConvertToOpenGL):
         vertex: Hashable,
         position: np.ndarray | None = None,
         label: bool = False,
-        label_fill_color: str = BLACK,
+        label_fill_color: str = Colors.BLACK,
         vertex_type: type[Mobject] = Dot,
         vertex_config: dict | None = None,
         vertex_mobject: dict | None = None,
@@ -692,7 +692,7 @@ class Graph(VMobject, metaclass=ConvertToOpenGL):
         *vertices: Hashable,
         positions: dict | None = None,
         labels: bool = False,
-        label_fill_color: str = BLACK,
+        label_fill_color: str = Colors.BLACK,
         vertex_type: type[Mobject] = Dot,
         vertex_config: dict | None = None,
         vertex_mobjects: dict | None = None,
@@ -746,7 +746,7 @@ class Graph(VMobject, metaclass=ConvertToOpenGL):
         *vertices: Hashable,
         positions: dict | None = None,
         labels: bool = False,
-        label_fill_color: str = BLACK,
+        label_fill_color: str = Colors.BLACK,
         vertex_type: type[Mobject] = Dot,
         vertex_config: dict | None = None,
         vertex_mobjects: dict | None = None,

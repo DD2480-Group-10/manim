@@ -19,7 +19,7 @@ from .. import config
 from ..camera.camera import Camera
 from ..constants import *
 from ..mobject.types.point_cloud_mobject import Point
-from ..utils.color import get_shaded_rgb
+from ..utils.color import Colors
 from ..utils.family import extract_mobject_family_members
 from ..utils.space_ops import rotation_about_z, rotation_matrix
 
@@ -108,13 +108,13 @@ class ThreeDCamera(Camera):
                 shaded_rgbas = rgbas.repeat(2, axis=0)
             else:
                 shaded_rgbas = np.array(rgbas[:2])
-            shaded_rgbas[0, :3] = get_shaded_rgb(
+            shaded_rgbas[0, :3] = Colors.get_shaded_rgb(
                 shaded_rgbas[0, :3],
                 get_3d_vmob_start_corner(vmobject),
                 get_3d_vmob_start_corner_unit_normal(vmobject),
                 light_source_point,
             )
-            shaded_rgbas[1, :3] = get_shaded_rgb(
+            shaded_rgbas[1, :3] = Colors.get_shaded_rgb(
                 shaded_rgbas[1, :3],
                 get_3d_vmob_end_corner(vmobject),
                 get_3d_vmob_end_corner_unit_normal(vmobject),

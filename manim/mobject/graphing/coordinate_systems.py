@@ -35,16 +35,7 @@ from manim.mobject.types.vectorized_mobject import (
     VGroup,
     VMobject,
 )
-from manim.utils.color import (
-    BLACK,
-    BLUE,
-    BLUE_D,
-    GREEN,
-    WHITE,
-    YELLOW,
-    color_gradient,
-    invert_color,
-)
+from manim.utils.color import Colors
 from manim.utils.config_ops import merge_dicts_recursively, update_dict_recursively
 from manim.utils.simple_functions import binary_search
 from manim.utils.space_ops import angle_of_vector
@@ -1006,9 +997,9 @@ class CoordinateSystem:
         dx: float | None = 0.1,
         input_sample_type: str = "left",
         stroke_width: float = 1,
-        stroke_color: Color = BLACK,
+        stroke_color: Color = Colors.BLACK,
         fill_opacity: float = 1,
-        color: Iterable[Color] | Color = np.array((BLUE, GREEN)),
+        color: Iterable[Color] | Color = np.array((Colors.BLUE, Colors.GREEN)),
         show_signed_area: bool = True,
         bounded_graph: ParametricFunction = None,
         blend: bool = False,
@@ -1123,7 +1114,7 @@ class CoordinateSystem:
         if type(color) is str:
             colors = [color] * len(x_range)
         else:
-            colors = color_gradient(color, len(x_range))
+            colors = Colors.color_gradient(color, len(x_range))
 
         for x, color in zip(x_range, colors):
             if input_sample_type == "left":
@@ -1159,7 +1150,7 @@ class CoordinateSystem:
 
             # checks if the rectangle is under the x-axis
             if self.p2c(graph_point)[1] < y_point and show_signed_area:
-                color = invert_color(color)
+                color = Colors.invert_color(color)
 
             # blends rectangles smoothly
             if blend:
@@ -1178,7 +1169,7 @@ class CoordinateSystem:
         self,
         graph: ParametricFunction,
         x_range: tuple[float, float] | None = None,
-        color: Color | Iterable[Color] = [BLUE, GREEN],
+        color: Color | Iterable[Color] = [Colors.BLUE, Colors.GREEN],
         opacity: float = 0.3,
         bounded_graph: ParametricFunction = None,
         **kwargs,
@@ -1331,7 +1322,7 @@ class CoordinateSystem:
         return np.tan(self.angle_of_tangent(x, graph, **kwargs))
 
     def plot_derivative_graph(
-        self, graph: ParametricFunction, color: Color = GREEN, **kwargs
+        self, graph: ParametricFunction, color: Color = Colors.GREEN, **kwargs
     ) -> ParametricFunction:
         """Returns the curve of the derivative of the passed graph.
 
@@ -1436,12 +1427,12 @@ class CoordinateSystem:
         x: float,
         graph: ParametricFunction,
         dx: float | None = None,
-        dx_line_color: Color = YELLOW,
+        dx_line_color: Color = Colors.YELLOW,
         dy_line_color: Color | None = None,
         dx_label: float | str | None = None,
         dy_label: float | str | None = None,
         include_secant_line: bool = True,
-        secant_line_color: Color = GREEN,
+        secant_line_color: Color = Colors.GREEN,
         secant_line_length: float = 10,
     ) -> VGroup:
         """Creates two lines representing `dx` and `df`, the labels for `dx` and `df`, and
@@ -1630,9 +1621,9 @@ class CoordinateSystem:
         label: float | str | Mobject | None = None,
         label_color: Color | None = None,
         triangle_size: float = MED_SMALL_BUFF,
-        triangle_color: Color | None = WHITE,
+        triangle_color: Color | None = Colors.WHITE,
         line_func: Line = Line,
-        line_color: Color = YELLOW,
+        line_color: Color = Colors.YELLOW,
     ) -> VGroup:
         """Creates a labelled triangle marker with a vertical line from the x-axis
         to a curve at a given x-value.
@@ -1976,7 +1967,7 @@ class Axes(VGroup, CoordinateSystem, metaclass=ConvertToOpenGL):
         x_values: Iterable[float],
         y_values: Iterable[float],
         z_values: Iterable[float] | None = None,
-        line_color: Color = YELLOW,
+        line_color: Color = Colors.YELLOW,
         add_vertex_dots: bool = True,
         vertex_dot_radius: float = DEFAULT_DOT_RADIUS,
         vertex_dot_style: dict | None = None,
@@ -2345,7 +2336,7 @@ class NumberPlane(Axes):
         }
         self.y_axis_config = {"label_direction": DR}
         self.background_line_style = {
-            "stroke_color": BLUE_D,
+            "stroke_color": Colors.BLUE_D,
             "stroke_width": 2,
             "stroke_opacity": 1,
         }
@@ -2632,7 +2623,7 @@ class PolarPlane(Axes):
         }
 
         self.background_line_style = {
-            "stroke_color": BLUE_D,
+            "stroke_color": Colors.BLUE_D,
             "stroke_width": 2,
             "stroke_opacity": 1,
         }

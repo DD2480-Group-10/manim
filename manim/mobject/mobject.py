@@ -35,14 +35,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 from .. import config
 from ..constants import *
-from ..utils.color import (
-    BLACK,
-    WHITE,
-    YELLOW_C,
-    Colors,
-    color_gradient,
-    interpolate_color,
-)
+from ..utils.color import Colors
 from ..utils.exceptions import MultiAnimationOverrideException
 from ..utils.iterables import list_update, remove_list_redundancies
 from ..utils.paths import straight_path
@@ -91,7 +84,7 @@ class Mobject:
         cls._add_intrinsic_animation_overrides()
         cls._original__init__ = cls.__init__
 
-    def __init__(self, color=WHITE, name=None, dim=3, target=None, z_index=0):
+    def __init__(self, color=Colors.WHITE, name=None, dim=3, target=None, z_index=0):
         self.name = self.__class__.__name__ if name is None else name
         self.dim = dim
         self.target = target
@@ -1698,7 +1691,7 @@ class Mobject:
 
     # Color functions
 
-    def set_color(self, color: Color = YELLOW_C, family: bool = True):
+    def set_color(self, color: Color = Colors.YELLOW_C, family: bool = True):
         """Condition is function which takes in one arguments, (x, y, z).
         Here it just recurses to submobjects, but in subclasses this
         should be further implemented based on the the inner workings
@@ -1718,8 +1711,8 @@ class Mobject:
         self,
         center=None,
         radius=1,
-        inner_color=WHITE,
-        outer_color=BLACK,
+        inner_color=Colors.WHITE,
+        outer_color=Colors.BLACK,
     ):
         self.set_submobject_colors_by_radial_gradient(
             center,
@@ -1736,7 +1729,7 @@ class Mobject:
             return self.set_color(*colors)
 
         mobs = self.family_members_with_points()
-        new_colors = color_gradient(colors, len(mobs))
+        new_colors = Colors.color_gradient(colors, len(mobs))
 
         for mob, color in zip(mobs, new_colors):
             mob.set_color(color, family=False)
@@ -1746,8 +1739,8 @@ class Mobject:
         self,
         center=None,
         radius=1,
-        inner_color=WHITE,
-        outer_color=BLACK,
+        inner_color=Colors.WHITE,
+        outer_color=Colors.BLACK,
     ):
         if center is None:
             center = self.get_center()
@@ -1755,7 +1748,7 @@ class Mobject:
         for mob in self.family_members_with_points():
             t = np.linalg.norm(mob.get_center() - center) / radius
             t = min(t, 1)
-            mob_color = interpolate_color(inner_color, outer_color, t)
+            mob_color = Colors.interpolate_color(inner_color, outer_color, t)
             mob.set_color(mob_color, family=False)
 
         return self
@@ -1766,7 +1759,7 @@ class Mobject:
 
     def fade_to(self, color, alpha, family=True):
         if self.get_num_points() > 0:
-            new_color = interpolate_color(self.get_color(), color, alpha)
+            new_color = Colors.interpolate_color(self.get_color(), color, alpha)
             self.set_color(new_color, family=False)
         if family:
             for submob in self.submobjects:

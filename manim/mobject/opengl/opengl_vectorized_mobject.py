@@ -21,7 +21,7 @@ from manim.utils.bezier import (
     partial_quadratic_bezier_points,
     proportions_along_bezier_curve_for_point,
 )
-from manim.utils.color import *
+from manim.utils.color import Colors
 from manim.utils.config_ops import _Data
 from manim.utils.iterables import listify, make_even, resize_with_interpolation
 from manim.utils.space_ops import (
@@ -328,13 +328,13 @@ class OpenGLVMobject(OpenGLMobject):
         return self
 
     def get_fill_colors(self):
-        return [Color(rgb_to_hex(rgba[:3])) for rgba in self.fill_rgba]
+        return [Color(Colors.rgb_to_hex(rgba[:3])) for rgba in self.fill_rgba]
 
     def get_fill_opacities(self):
         return self.fill_rgba[:, 3]
 
     def get_stroke_colors(self):
-        return [Color(rgb_to_hex(rgba[:3])) for rgba in self.stroke_rgba]
+        return [Color(Colors.rgb_to_hex(rgba[:3])) for rgba in self.stroke_rgba]
 
     def get_stroke_opacities(self):
         return self.stroke_rgba[:, 3]
@@ -1781,7 +1781,7 @@ class OpenGLVectorizedPoint(OpenGLPoint, OpenGLVMobject):
     def __init__(
         self,
         location=ORIGIN,
-        color=BLACK,
+        color=Colors.BLACK,
         fill_opacity=0,
         stroke_width=0,
         artificial_width=0.01,
@@ -1863,7 +1863,7 @@ class OpenGLDashedVMobject(OpenGLVMobject):
         vmobject: OpenGLVMobject,
         num_dashes: int = 15,
         dashed_ratio: float = 0.5,
-        color: Color = WHITE,
+        color: Color = Colors.WHITE,
         **kwargs,
     ):
         self.dashed_ratio = dashed_ratio
