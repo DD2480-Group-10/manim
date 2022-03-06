@@ -49,6 +49,8 @@ Examples
 
 from __future__ import annotations
 
+from manim.utils.color import get_all_colors
+
 __all__ = ["Text", "Paragraph", "MarkupText", "register_font"]
 
 
@@ -1331,8 +1333,11 @@ class MarkupText(SVGMobject):
         if re.match("#[0-9a-f]{6}", col):
             return col
         else:
-            testCol = col.upper()
-            return globals()[testCol] 
+            # lookup in COLOR_VALUES
+            colorDict = get_all_colors()
+            return colorDict[col]
+
+
 
     def _extract_color_tags(self):
         """Used to determine which parts (if any) of the string should be formatted
