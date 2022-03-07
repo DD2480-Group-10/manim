@@ -21,6 +21,7 @@ __all__ = [
 ]
 
 import random
+import warnings
 from typing import Iterable
 
 import numpy as np
@@ -195,13 +196,25 @@ __all__ += [
     "GREY_BROWN",
 ]
 
-color_map = dict(((colorName, value) for colorName, value in locals().items() if str(value).startswith("#")))
+color_map = {
+    colorName: value
+    for colorName, value in locals().items()
+    if str(value).startswith("#")
+}
 all_colors = [c for colors, c in locals().items() if str(c).startswith("#")]
+
 
 def get_all_colors():
     return color_map
 
+
 def color_to_rgb(color: Color | str) -> np.ndarray:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module for conversions",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     if isinstance(color, str):
         return hex_to_rgb(color)
     elif isinstance(color, Color):
@@ -211,6 +224,12 @@ def color_to_rgb(color: Color | str) -> np.ndarray:
 
 
 def color_to_rgba(color: Color | str, alpha: float = 1) -> np.ndarray:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module for conversions",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return np.array([*color_to_rgb(color), alpha])
 
 
@@ -223,10 +242,22 @@ def rgba_to_color(rgba: Iterable[float]) -> Color:
 
 
 def rgb_to_hex(rgb: Iterable[float]) -> str:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module for conversions",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return "#" + "".join("%02x" % round(255 * x) for x in rgb)
 
 
 def hex_to_rgb(hex_code: str) -> np.ndarray:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module for conversions",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     hex_part = hex_code[1:]
     if len(hex_part) == 3:
         hex_part = "".join([2 * c for c in hex_part])
@@ -238,10 +269,23 @@ def invert_color(color: Color) -> Color:
 
 
 def color_to_int_rgb(color: Color) -> np.ndarray:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module for conversions",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return (255 * color_to_rgb(color)).astype("uint8")
 
 
 def color_to_int_rgba(color: Color, opacity: float = 1.0) -> np.ndarray:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module for conversions",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+
     alpha_multiplier = np.vectorize(lambda x: int(x * opacity))
 
     return alpha_multiplier(np.append(color_to_int_rgb(color), 255))
@@ -286,6 +330,7 @@ def random_bright_color() -> Color:
 
 def random_color() -> Color:
     return random.choice(all_colors)
+
 
 def get_shaded_rgb(
     rgb: np.ndarray,
