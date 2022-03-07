@@ -1871,7 +1871,7 @@ class OpenGLMobject:
 
     def set_rgba_array(self, color=None, opacity=None, name="rgbas", recurse=True):
         if color is not None:
-            rgbs = np.array([color_to_rgb(c) for c in listify(color)])
+            rgbs = np.array([c.get_rgb() for c in listify(color)])
         if opacity is not None:
             opacities = listify(opacity)
 
