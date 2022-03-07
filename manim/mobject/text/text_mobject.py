@@ -71,7 +71,9 @@ from manim.constants import *
 from manim.mobject.geometry.arc import Dot
 from manim.mobject.svg.svg_mobject import SVGMobject
 from manim.mobject.types.vectorized_mobject import VGroup, VMobject
-from manim.utils.color import Colors, color_gradient
+
+# from manim.utils.color import *
+from manim.utils.color import ALL_COLORS
 from manim.utils.deprecation import deprecated
 
 TEXT_MOB_SCALE_FACTOR = 0.05
@@ -1331,7 +1333,8 @@ class MarkupText(SVGMobject):
         if re.match("#[0-9a-f]{6}", col):
             return col
         else:
-            return Colors[col.lower()].value
+            # lookup in COLOR_VALUES
+            return ALL_COLORS[col]
 
     def _extract_color_tags(self):
         """Used to determine which parts (if any) of the string should be formatted
