@@ -211,7 +211,7 @@ def get_all_colors():
 def color_to_rgb(color: Color | str) -> np.ndarray:
     warnings.warn(
         "This method is not guaranteed to stay around. "
-        "Please refer to colour module `Color.get_rgb`  for conversions",
+        "Please refer to colour module `Color.get_rgb` for Color to rgb conversion",
         DeprecationWarning,
         stacklevel=2,
     )
