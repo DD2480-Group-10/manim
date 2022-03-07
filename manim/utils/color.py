@@ -211,7 +211,7 @@ def get_all_colors():
 def color_to_rgb(color: Color | str) -> np.ndarray:
     warnings.warn(
         "This method is not guaranteed to stay around. "
-        "Please refer to colour module for conversions",
+        "Please refer to colour module `Color.get_rgb`  for conversions",
         DeprecationWarning,
         stacklevel=2,
     )
@@ -224,12 +224,6 @@ def color_to_rgb(color: Color | str) -> np.ndarray:
 
 
 def color_to_rgba(color: Color | str, alpha: float = 1) -> np.ndarray:
-    warnings.warn(
-        "This method is not guaranteed to stay around. "
-        "Please refer to colour module for conversions",
-        DeprecationWarning,
-        stacklevel=2,
-    )
     return np.array([*color_to_rgb(color), alpha])
 
 
@@ -244,7 +238,7 @@ def rgba_to_color(rgba: Iterable[float]) -> Color:
 def rgb_to_hex(rgb: Iterable[float]) -> str:
     warnings.warn(
         "This method is not guaranteed to stay around. "
-        "Please refer to colour module for conversions",
+        "Please refer to colour module `rgb2hex` for rgb to hex conversion",
         DeprecationWarning,
         stacklevel=2,
     )
@@ -254,7 +248,7 @@ def rgb_to_hex(rgb: Iterable[float]) -> str:
 def hex_to_rgb(hex_code: str) -> np.ndarray:
     warnings.warn(
         "This method is not guaranteed to stay around. "
-        "Please refer to colour module for conversions",
+        "Please refer to colour module `hex2rgb` for hex to rgb conversion",
         DeprecationWarning,
         stacklevel=2,
     )
@@ -269,22 +263,10 @@ def invert_color(color: Color) -> Color:
 
 
 def color_to_int_rgb(color: Color) -> np.ndarray:
-    warnings.warn(
-        "This method is not guaranteed to stay around. "
-        "Please refer to colour module for conversions",
-        DeprecationWarning,
-        stacklevel=2,
-    )
     return (255 * color_to_rgb(color)).astype("uint8")
 
 
 def color_to_int_rgba(color: Color, opacity: float = 1.0) -> np.ndarray:
-    warnings.warn(
-        "This method is not guaranteed to stay around. "
-        "Please refer to colour module for conversions",
-        DeprecationWarning,
-        stacklevel=2,
-    )
 
     alpha_multiplier = np.vectorize(lambda x: int(x * opacity))
 
