@@ -1,6 +1,7 @@
 """Colors and utility functions for conversion between different color models."""
 
 from __future__ import annotations
+
 from warnings import warn
 
 __all__ = [
@@ -22,6 +23,7 @@ __all__ = [
 ]
 
 import random
+import warnings
 from enum import Enum, EnumMeta
 from typing import Iterable
 
@@ -31,86 +33,88 @@ from colour import Color
 from ..utils.bezier import interpolate
 from ..utils.space_ops import normalize
 
+
 class ColorsMeta(EnumMeta):
     def __getattribute__(self, colorName):
         colors = [
-        'white', 
-        'gray_a', 
-        'gray_b', 
-        'gray_c', 
-        'gray_d', 
-        'gray_e', 
-        'black', 
-        'lighter_gray', 
-        'gray', 
-        'darker_gray', 
-        'blue_a', 
-        'blue_b', 
-        'blue_c', 
-        'blue_d', 
-        'blue_e',
-        'pure_blue',
-        'blue',
-        'dark_blue',
-        'teal_a',
-        'teal_b',
-        'teal_c',
-        'teal_d',
-        'teal_e',
-        'teal',
-        'green_a',
-        'green_b',
-        'green_c',
-        'green_d',
-        'green_e',
-        'pure_green',
-        'green',
-        'yellow_a',
-        'yellow_b',
-        'yellow_c',
-        'yellow_d',
-        'yellow_e',
-        'yellow',
-        'gold_a',
-        'gold_b',
-        'gold_c',
-        'gold_d',
-        'gold_e',
-        'gold',
-        'red_a',
-        'red_b',
-        'red_c',
-        'red_d',
-        'red_e',
-        'pure_red',
-        'red',
-        'maroon_a',
-        'maroon_b',
-        'maroon_c',
-        'maroon_d',
-        'maroon_e',
-        'maroon',
-        'purple_a',
-        'purple_b',
-        'purple_c',
-        'purple_d',
-        'purple_e',
-        'purple',
-        'pink',
-        'light_pink',
-        'orange',
-        'light_brown',
-        'dark_brown',
-        'gray_brown'
+            "white",
+            "gray_a",
+            "gray_b",
+            "gray_c",
+            "gray_d",
+            "gray_e",
+            "black",
+            "lighter_gray",
+            "gray",
+            "darker_gray",
+            "blue_a",
+            "blue_b",
+            "blue_c",
+            "blue_d",
+            "blue_e",
+            "pure_blue",
+            "blue",
+            "dark_blue",
+            "teal_a",
+            "teal_b",
+            "teal_c",
+            "teal_d",
+            "teal_e",
+            "teal",
+            "green_a",
+            "green_b",
+            "green_c",
+            "green_d",
+            "green_e",
+            "pure_green",
+            "green",
+            "yellow_a",
+            "yellow_b",
+            "yellow_c",
+            "yellow_d",
+            "yellow_e",
+            "yellow",
+            "gold_a",
+            "gold_b",
+            "gold_c",
+            "gold_d",
+            "gold_e",
+            "gold",
+            "red_a",
+            "red_b",
+            "red_c",
+            "red_d",
+            "red_e",
+            "pure_red",
+            "red",
+            "maroon_a",
+            "maroon_b",
+            "maroon_c",
+            "maroon_d",
+            "maroon_e",
+            "maroon",
+            "purple_a",
+            "purple_b",
+            "purple_c",
+            "purple_d",
+            "purple_e",
+            "purple",
+            "pink",
+            "light_pink",
+            "orange",
+            "light_brown",
+            "dark_brown",
+            "gray_brown",
         ]
         if colorName in colors:
-            warn(
+            warnings.warn(
                 "Color enums is deprecated in favor of the constants. "
                 "The constants can be accessed by importing manim.utils.color",
                 DeprecationWarning,
-                stacklevel=2
+                stacklevel=2,
             )
         return EnumMeta.__getattribute__(self, colorName)
+
 
 class Colors(Enum, metaclass=ColorsMeta):
     """A list of pre-defined colors.
@@ -363,6 +367,7 @@ def print_constant_definitions():
     constants_names_repr = '[\n    "' + '",\n    "'.join(constants_names) + '",\n]'
 
     print(f"\n__all__ += {constants_names_repr}")
+
 
 WHITE: Color = Color("#FFFFFF")
 GRAY_A: Color = Color("#DDDDDD")
@@ -617,6 +622,12 @@ __all__ += [
 
 
 def color_to_rgb(color: Color | str) -> np.ndarray:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module `Color.get_rgb` for Color to rgb conversion",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     if isinstance(color, str):
         return hex_to_rgb(color)
     elif isinstance(color, Color):
@@ -638,10 +649,22 @@ def rgba_to_color(rgba: Iterable[float]) -> Color:
 
 
 def rgb_to_hex(rgb: Iterable[float]) -> str:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module `rgb2hex` for rgb to hex conversion",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return "#" + "".join("%02x" % round(255 * x) for x in rgb)
 
 
 def hex_to_rgb(hex_code: str) -> np.ndarray:
+    warnings.warn(
+        "This method is not guaranteed to stay around. "
+        "Please refer to colour module `hex2rgb` for hex to rgb conversion",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     hex_part = hex_code[1:]
     if len(hex_part) == 3:
         hex_part = "".join([2 * c for c in hex_part])
@@ -657,6 +680,7 @@ def color_to_int_rgb(color: Color) -> np.ndarray:
 
 
 def color_to_int_rgba(color: Color, opacity: float = 1.0) -> np.ndarray:
+
     alpha_multiplier = np.vectorize(lambda x: int(x * opacity))
 
     return alpha_multiplier(np.append(color_to_int_rgb(color), 255))
