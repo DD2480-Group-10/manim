@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from warnings import warn
-
 __all__ = [
     "color_to_rgb",
     "color_to_rgba",
