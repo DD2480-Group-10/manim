@@ -644,7 +644,7 @@ class Text(SVGMobject):
         t2xwords = set(chain(*([*t2x.keys()] for t2x, _ in t2xs)))
         for word in t2xwords:
             setting_args = {
-                arg: t2x[word] if word in t2x else default_args[arg]
+                arg: str(t2x[word]) if word in t2x else str(default_args[arg])
                 for t2x, arg in t2xs
             }
 
