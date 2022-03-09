@@ -1,0 +1,223 @@
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+rootdir: /home/bror/kth/DD2480/manim, configfile: pyproject.toml
+plugins: xdist-2.5.0, cov-3.0.0, forked-1.4.0
+gw0 I / gw1 I / gw2 I / gw3 I
+gw0 [609] / gw1 [609] / gw2 [609] / gw3 [609]
+
+........................................................................ [ 11%]
+........................................................................ [ 23%]
+......................................................................s. [ 35%]
+.....................................xxxx..........X.................... [ 47%]
+........................................................................ [ 59%]
+........................................................................ [ 70%]
+........................................................................ [ 82%]
+.................X.........................s......................x.x... [ 94%]
+.................................                                        [100%]
+=============================== warnings summary ===============================
+tests/test_threed_scene.py: 5 warnings
+tests/test_value_tracker.py: 16 warnings
+tests/test_graphical_units/test_axes.py: 5 warnings
+tests/test_graphical_units/test_mobjects.py: 5 warnings
+tests/test_graphical_units/test_updaters.py: 1 warning
+tests/test_graphical_units/test_threed.py: 80 warnings
+  /home/bror/kth/DD2480/manim/manim/mobject/value_tracker.py:74: DeprecationWarning: This method is not guaranteed to stay around. Please prefer setting the attribute normally or with Mobject.set().
+    self.set_points(np.zeros((1, 3)))
+
+tests/test_value_tracker.py: 1 warning
+tests/test_graphical_units/test_threed.py: 24 warnings
+  /home/bror/kth/DD2480/manim/manim/mobject/value_tracker.py:135: DeprecationWarning: This method is not guaranteed to stay around. Please prefer setting the attribute normally or with Mobject.set().
+    self.set_points(path_func(mobject1.points, mobject2.points, alpha))
+
+tests/opengl/test_axes_shift_opengl.py: 4 warnings
+tests/opengl/test_coordinate_system_opengl.py: 68 warnings
+tests/opengl/test_opengl_vectorized_mobject.py: 1 warning
+tests/opengl/test_ticks_opengl.py: 12 warnings
+  /home/bror/kth/DD2480/manim/manim/mobject/opengl/opengl_vectorized_mobject.py:924: DeprecationWarning: Calling np.sum(generator) is deprecated, and in the future will give a different result. Use np.sum(np.fromiter(generator)) or the python sum builtin instead.
+    target_length = alpha * np.sum(length for _, length in curves_and_lengths)
+
+tests/test_graphical_units/test_axes.py::test_get_area
+tests/test_graphical_units/test_axes.py::test_get_area
+tests/test_graphical_units/test_axes.py::test_get_area
+tests/test_graphical_units/test_axes.py::test_get_area
+tests/test_graphical_units/test_axes.py::test_get_area
+tests/test_graphical_units/test_axes.py::test_get_area
+tests/test_graphical_units/test_axes.py::test_get_area
+  /home/bror/kth/DD2480/manim/manim/mobject/graphing/number_line.py:432: DeprecationWarning: This method is not guaranteed to stay around. Please prefer getting the attribute normally.
+    num_mob.shift(num_mob[0].get_width() * LEFT / 2)
+
+tests/test_graphical_units/test_specialized.py::test_Broadcast
+tests/test_graphical_units/test_specialized.py::test_Broadcast
+tests/test_graphical_units/test_specialized.py::test_Broadcast
+tests/test_graphical_units/test_specialized.py::test_Broadcast
+tests/test_graphical_units/test_specialized.py::test_Broadcast
+  /home/bror/kth/DD2480/manim/manim/animation/specialized.py:87: DeprecationWarning: This method is not guaranteed to stay around. Please prefer setting the attribute normally or with Mobject.set().
+    mob.set_width(self.initial_width)
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+
+---------- coverage: platform linux, python 3.8.10-final-0 -----------
+Name                                                 Stmts   Miss  Cover
+------------------------------------------------------------------------
+manim/__init__.py                                      102      7    93%
+manim/__main__.py                                       27      0   100%
+manim/_config/__init__.py                               21      0   100%
+manim/_config/logger_utils.py                           58      4    93%
+manim/_config/utils.py                                 453     55    88%
+manim/animation/__init__.py                              0      0   100%
+manim/animation/animation.py                           150     15    90%
+manim/animation/changing.py                             67     51    24%
+manim/animation/composition.py                         131     19    85%
+manim/animation/creation.py                            139     38    73%
+manim/animation/fading.py                               48      6    88%
+manim/animation/growing.py                              46      4    91%
+manim/animation/indication.py                          163     19    88%
+manim/animation/movement.py                             45      7    84%
+manim/animation/numbers.py                              20      8    60%
+manim/animation/rotation.py                             37      8    78%
+manim/animation/specialized.py                          30      3    90%
+manim/animation/transform.py                           231     58    75%
+manim/animation/transform_matching_parts.py            109     76    30%
+manim/animation/updaters/__init__.py                     0      0   100%
+manim/animation/updaters/mobject_update_utils.py        62     48    23%
+manim/animation/updaters/update.py                      25     11    56%
+manim/camera/__init__.py                                 0      0   100%
+manim/camera/camera.py                                 396     96    76%
+manim/camera/mapping_camera.py                          52     33    37%
+manim/camera/moving_camera.py                           77      8    90%
+manim/camera/multi_camera.py                            36     25    31%
+manim/camera/three_d_camera.py                         158     16    90%
+manim/camera/webgl_camera.py                            20     20     0%
+manim/cli/__init__.py                                    0      0   100%
+manim/cli/cfg/__init__.py                                0      0   100%
+manim/cli/cfg/group.py                                 129    100    22%
+manim/cli/init/__init__.py                               0      0   100%
+manim/cli/init/commands.py                              11      1    91%
+manim/cli/new/__init__.py                                0      0   100%
+manim/cli/new/group.py                                  79     56    29%
+manim/cli/plugins/__init__.py                            0      0   100%
+manim/cli/plugins/commands.py                            9      2    78%
+manim/cli/render/__init__.py                             0      0   100%
+manim/cli/render/commands.py                           117     41    65%
+manim/cli/render/ease_of_access_options.py               4      0   100%
+manim/cli/render/global_options.py                      17      7    59%
+manim/cli/render/output_options.py                       4      0   100%
+manim/cli/render/render_options.py                      28      6    79%
+manim/communitycolors.py                                 6      6     0%
+manim/constants.py                                      72      0   100%
+manim/grpc/__init__.py                                   0      0   100%
+manim/grpc/gen/__init__.py                               4      4     0%
+manim/grpc/gen/frameserver_pb2.py                       92     92     0%
+manim/grpc/gen/frameserver_pb2_grpc.py                  36     36     0%
+manim/grpc/gen/renderserver_pb2.py                      34     34     0%
+manim/grpc/gen/renderserver_pb2_grpc.py                 20     20     0%
+manim/grpc/impl/__init__.py                              0      0   100%
+manim/grpc/impl/frame_server_impl.py                   207    207     0%
+manim/gui/__init__.py                                    0      0   100%
+manim/gui/gui.py                                        51     41    20%
+manim/mobject/__init__.py                                0      0   100%
+manim/mobject/frame.py                                  17      4    76%
+manim/mobject/geometry/__init__.py                       0      0   100%
+manim/mobject/geometry/arc.py                          317     76    76%
+manim/mobject/geometry/boolean_ops.py                  103     17    83%
+manim/mobject/geometry/line.py                         251     54    78%
+manim/mobject/geometry/polygram.py                     139     17    88%
+manim/mobject/geometry/shape_matchers.py                40     17    58%
+manim/mobject/geometry/tips.py                          53      3    94%
+manim/mobject/graph.py                                 346    130    62%
+manim/mobject/graphing/__init__.py                       0      0   100%
+manim/mobject/graphing/coordinate_systems.py           613    157    74%
+manim/mobject/graphing/functions.py                     74      9    88%
+manim/mobject/graphing/number_line.py                  191     19    90%
+manim/mobject/graphing/probability.py                  182     71    61%
+manim/mobject/graphing/scale.py                         39      5    87%
+manim/mobject/logo.py                                  109     89    18%
+manim/mobject/matrix.py                                118     48    59%
+manim/mobject/mobject.py                               904    170    81%
+manim/mobject/opengl/__init__.py                         0      0   100%
+manim/mobject/opengl/dot_cloud.py                       22     10    55%
+manim/mobject/opengl/opengl_compatibility.py            17      0   100%
+manim/mobject/opengl/opengl_geometry.py                477    477     0%
+manim/mobject/opengl/opengl_mobject.py                1142    431    62%
+manim/mobject/opengl/opengl_point_cloud_mobject.py     115     79    31%
+manim/mobject/opengl/opengl_surface.py                 189    145    23%
+manim/mobject/opengl/opengl_three_dimensions.py         30     23    23%
+manim/mobject/opengl/opengl_vectorized_mobject.py      758    175    77%
+manim/mobject/svg/__init__.py                            0      0   100%
+manim/mobject/svg/brace.py                             110     31    72%
+manim/mobject/svg/style_utils.py                        57      1    98%
+manim/mobject/svg/svg_mobject.py                       210     28    87%
+manim/mobject/svg/svg_path.py                          244      4    98%
+manim/mobject/table.py                                 218     75    66%
+manim/mobject/text/__init__.py                           0      0   100%
+manim/mobject/text/code_mobject.py                     225    197    12%
+manim/mobject/text/numbers.py                          124     22    82%
+manim/mobject/text/tex_mobject.py                      229     85    63%
+manim/mobject/text/text_mobject.py                     475    172    64%
+manim/mobject/three_d/__init__.py                        0      0   100%
+manim/mobject/three_d/polyhedra.py                      64      9    86%
+manim/mobject/three_d/three_d_utils.py                  34      3    91%
+manim/mobject/three_d/three_dimensions.py              286     30    90%
+manim/mobject/types/__init__.py                          0      0   100%
+manim/mobject/types/image_mobject.py                   110     40    64%
+manim/mobject/types/point_cloud_mobject.py             164     81    51%
+manim/mobject/types/vectorized_mobject.py              768    138    82%
+manim/mobject/value_tracker.py                          52      0   100%
+manim/mobject/vector_field.py                          271    226    17%
+manim/opengl/__init__.py                                13     13     0%
+manim/plugins/__init__.py                                2      0   100%
+manim/plugins/import_plugins.py                         27      0   100%
+manim/plugins/plugins_flags.py                          12      6    50%
+manim/renderer/__init__.py                               0      0   100%
+manim/renderer/cairo_renderer.py                       109      5    95%
+manim/renderer/opengl_renderer.py                      337     75    78%
+manim/renderer/opengl_renderer_window.py                80     25    69%
+manim/renderer/shader.py                               265    123    54%
+manim/renderer/shader_wrapper.py                       103     33    68%
+manim/renderer/vectorized_mobject_rendering.py         128    116     9%
+manim/renderer/webgl_renderer.py                        42     42     0%
+manim/scene/__init__.py                                  0      0   100%
+manim/scene/moving_camera_scene.py                      17      1    94%
+manim/scene/scene.py                                   597    271    55%
+manim/scene/scene_file_writer.py                       252     34    87%
+manim/scene/section.py                                  25      2    92%
+manim/scene/three_d_scene.py                           188    100    47%
+manim/scene/vector_space_scene.py                      329    211    36%
+manim/scene/zoomed_scene.py                             61     46    25%
+manim/utils/__init__.py                                  0      0   100%
+manim/utils/bezier.py                                  210     47    78%
+manim/utils/caching.py                                  27      2    93%
+manim/utils/color.py                                   237     22    91%
+manim/utils/commands.py                                 21      0   100%
+manim/utils/config_ops.py                               32      2    94%
+manim/utils/debug.py                                    19     11    42%
+manim/utils/deprecation.py                              96      2    98%
+manim/utils/exceptions.py                                7      0   100%
+manim/utils/family.py                                   12      0   100%
+manim/utils/family_ops.py                               20      2    90%
+manim/utils/file_ops.py                                106     36    66%
+manim/utils/hashing.py                                 136     10    93%
+manim/utils/images.py                                   19      9    53%
+manim/utils/ipython_magic.py                            74     58    22%
+manim/utils/iterables.py                                95     19    80%
+manim/utils/module_ops.py                               96     31    68%
+manim/utils/opengl.py                                   44     18    59%
+manim/utils/paths.py                                    52      7    87%
+manim/utils/rate_functions.py                          212     92    57%
+manim/utils/simple_functions.py                         37     10    73%
+manim/utils/sounds.py                                    6      0   100%
+manim/utils/space_ops.py                               213     37    83%
+manim/utils/testing/__init__.py                          0      0   100%
+manim/utils/testing/_frames_testers.py                  49     16    67%
+manim/utils/testing/_show_diff.py                       21     18    14%
+manim/utils/testing/_test_class_makers.py               45      1    98%
+manim/utils/testing/frames_comparison.py                86      9    90%
+manim/utils/tex.py                                      60     11    82%
+manim/utils/tex_file_writing.py                        110     19    83%
+manim/utils/tex_templates.py                           253      0   100%
+manim/utils/unit.py                                     24      2    92%
+------------------------------------------------------------------------
+TOTAL                                                18516   6250    66%
+Coverage XML written to file coverage.xml
+
+= 599 passed, 2 skipped, 6 xfailed, 2 xpassed, 234 warnings in 218.41s (0:03:38) =
