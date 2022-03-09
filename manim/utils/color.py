@@ -538,7 +538,6 @@ __all__ += [
 ]
 
 
-@deprecated(replacement="Color.get_rgb()")
 def color_to_rgb(color: Color | str) -> np.ndarray:
     if isinstance(color, str):
         return hex_to_rgb(color)
@@ -563,12 +562,10 @@ def rgba_to_color(rgba: Iterable[float]) -> Color:
     return rgb_to_color(rgba[:3])
 
 
-@deprecated(replacement="colour.rgb2hex")
 def rgb_to_hex(rgb: Iterable[float]) -> str:
     return "#" + "".join("%02x" % round(255 * x) for x in rgb)
 
 
-@deprecated(replacement="colour.hex2rgb")
 def hex_to_rgb(hex_code: str) -> np.ndarray:
     hex_part = hex_code[1:]
     if len(hex_part) == 3:
